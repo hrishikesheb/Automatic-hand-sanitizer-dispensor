@@ -1,0 +1,35 @@
+#define echoPin 4                
+#define trigPin 5
+int long duration;
+int distance;
+
+const int motor= 10;             
+void setup()
+{
+  pinMode(echoPin,INPUT);        
+  pinMode(trigPin,OUTPUT);  
+  pinMode(motor, OUTPUT);        
+}
+
+void loop()
+{
+  digitalWrite(trigPin,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin,LOW);
+  duration=pulseIn(echoPin,HIGH);
+  distance=(duration*0.034/2);   
+
+  if(distance<=18)               
+  {  
+    digitalWrite(motor,HIGH);    
+    delay(400);                  
+    digitalWrite(motor,LOW);     
+    delay(1000);                
+  }
+  else 
+  {
+    digitalWrite(motor,LOW);     
+  }
+}
